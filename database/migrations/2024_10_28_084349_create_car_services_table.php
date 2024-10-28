@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('car_services', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('photo');
+            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('duration_in_hour');
+            $table->text('about');
+            $table->string('slug')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
