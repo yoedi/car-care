@@ -36,6 +36,7 @@ class CityResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
+                
                 Tables\Columns\TextColumn::make('slug'),
             ])
             ->filters([
