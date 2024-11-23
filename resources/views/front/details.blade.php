@@ -33,7 +33,7 @@
                 id="Top-nav"
                 class="flex items-center justify-between px-4 pt-5 absolute top-0 z-10 w-full"
             >
-                <a href="store-list.html">
+                <a href="{{ route('front.index') }}">
                     <div class="w-10 h-10 flex shrink-0">
                         <img src="{{ asset('assets/images/icons/back.svg') }}" alt="icon" />
                     </div>
@@ -538,11 +538,19 @@
                     </p>
                     <p class="text-sm leading-[21px] text-[#909DBF]">{{ $carService->duration_in_hour }} Hours</p>
                 </div>
+                @if($carStore->is_open)
+                @if($carStore->is_full)
+                <a href="" class="rounded-full p-[12px_20px] bg-[#EEEFF4] font-bold text-[#AAADBF]">Full Booked</a>
+                @else
                 <a
-                    href="booking.html"
+                    href="{{ route('front.booking', $carStore->slug) }}"
                     class="rounded-full p-[12px_20px] bg-[#FF8E62] font-bold text-white"
                     >Booking Now</a
                 >
+                @endif
+                @else
+                <a href="" class="rounded-full p-[12px_20px] bg-[#EEEFF4] font-bold text-[#AAADBF]">Closed</a>
+                @endif
             </div>
             <!-- About modal -->
             <div
