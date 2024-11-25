@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', 'Car Care - Store Details')
+@section('title', 'Store Details')
 @push('after-styles')
 
         <link

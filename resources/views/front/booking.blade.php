@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', 'Car Care - Booking Details')
+@section('title', 'Booking Details')
 @section('content')
 <main class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
   <div id="Top-nav" class="flex items-center justify-between px-4 pt-5">

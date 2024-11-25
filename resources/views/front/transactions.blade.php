@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', 'Car Care - Search Transaction')
+@section('title', 'Search Transaction')
 @section('content')
 <main class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
   <div class="flex flex-col items-center gap-[50px] max-w-[330px] m-auto h-fit w-full py-6">

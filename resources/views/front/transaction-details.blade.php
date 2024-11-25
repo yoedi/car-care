@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', 'Car Care - Transaction Details')
+@section('title', 'Transaction Details')
 @section('content')
 <main class="bg-[#FAFAFA] max-w-[640px] mx-auto min-h-screen relative flex flex-col has-[#CTA-nav]:pb-[120px] has-[#Bottom-nav]:pb-[120px]">
   <div class="bg-[#270738] absolute top-0 max-w-[640px] w-full mx-auto rounded-b-[50px] h-[472px]"></div>
