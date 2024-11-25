@@ -83,7 +83,7 @@ class FrontController extends Controller
         $bookingFee = 25000;
         $grandTotal = $totalPpn + $bookingFee + $servicePrice;
 
-        session()->get('totalAmount', $carService->price);
+        session()->put('totalAmount', $grandTotal);
         return view('front.payment', compact('carService', 'carStore', 'totalPpn', 'bookingFee', 'grandTotal'));
     }
 
@@ -97,7 +97,7 @@ class FrontController extends Controller
 
         $bookingTransactionId = null;
 
-        DB::transaction(function() use ($request, $totalAmount, $customerName, $customerPhoneNumber, 
+        DB::transaction(function() use ($request, $totalAmount, $customerName, $customerPhoneNumber,
         $customerTimeAt, $serviceTypeId, $carStoreId, &$bookingTransactionId) {
             $validated = $request->validated();
 
@@ -125,6 +125,36 @@ class FrontController extends Controller
     }
 
     public function success_booking(BookingTransaction $bookingTransaction) {
-        return view('front.success.booking', compact('bookingTransaction'));
+        return view('front.success-booking', compact('bookingTransaction'));
+    }
+
+    public function transactions() {
+        return view('front.transactions');
+    }
+
+    public function transaction_details(Request $request) {
+        $request->validate([
+            'trx_id' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:255'],
+        ]);
+
+        $trx_id = $request->input('trx_id');
+        $phone_number = $request->input('phone_number');
+
+        $details = BookingTransaction::with(['service_details', 'store_details'])
+        ->where('trx_id', $trx_id)
+        ->where('phone_number', $phone_number)
+        ->first();
+
+        if (!$details) {
+            return redirect()->back()->withErrors(['error' =>'Transaction not found.']);
+        }
+
+        $ppn = 0.11;
+        $totalPpn = $details->service_details->price * $ppn;
+        $bookingFee = 25000;
+
+        return view('front.transaction-details', compact('details', 'totalPpn', 'bookingFee'));
+
     }
 }

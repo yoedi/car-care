@@ -24,7 +24,7 @@ class BookingTransaction extends Model
         'time_at',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'started_at' => 'date'
     ];
 
